@@ -10,13 +10,48 @@
         Title="NotesApp">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+    <Grid ColumnDefinitions="* 2*" ShowGridLines="True">
+
+        <StackPanel Grid.Column="0">
+            <ListBox ItemsSource="{Binding Notes}" SelectedItem="{Binding SelectedNote}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <Grid Grid.Column="1" 
+              RowDefinitions=".75* 3* *" ShowGridLines="True">
+            <TextBox Margin="10" 
+                     VerticalContentAlignment="Center" 
+                     PlaceholderText="Заголовок:"
+                     FontSize="24"
+                     FontWeight="SemiBold"/>
+            <TextBox Margin="10"
+                     Grid.Row="1"
+                     PlaceholderText="Контент:"
+                     FontSize="20"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"/>
+
+            <StackPanel Margin="10" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Grid.Row="2">
+                
+                <Button Content="Добавить" Margin="0 0 10 0" />
+                <Button Content="Удалить" />
+
+            </StackPanel>
+
+
+        </Grid>
+    </Grid>
+    
 
 </Window>

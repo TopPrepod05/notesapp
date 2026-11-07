@@ -13,7 +13,7 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty] private string _content = "";
     [ObservableProperty] private Note? _selectedNote;
     private INoteService noteService;
-    public ObservableCollection<Note> Notes = [];
+    public ObservableCollection<Note> Notes { get; set; } = [];
 
     public MainViewModel(INoteService _ns)
     {
