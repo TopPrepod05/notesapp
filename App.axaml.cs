@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NotesApp.Repositories;
 using NotesApp.Services;
@@ -26,6 +27,10 @@ public partial class App : Application
         services.AddTransient<MainViewModel>();
 
         var provider = services.BuildServiceProvider();
+        var dbfactory = provider.GetRequiredService<IDbContextFactory<AppDbContext>>();
+        using var db = dbfactory.CreateDbContext();
+        db.Database.Migrate();
+
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {

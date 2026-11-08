@@ -8,22 +8,32 @@
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="NotesApp">
-
+    <!--
     <Design.DataContext>
         <vm:MainViewModel />
     </Design.DataContext>
+    -->
 
     <Grid ColumnDefinitions="* 2*" ShowGridLines="True">
 
-        <StackPanel Grid.Column="0">
-            <ListBox ItemsSource="{Binding Notes}" SelectedItem="{Binding SelectedNote}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+            <ScrollViewer Grid.Column="0">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Notes}" 
+                                SelectedItem="{Binding SelectedNote}"
+                                SelectionMode="Toggle">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" 
+                                                FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat='Изменено: {0}'}" 
+                                                FontWeight="Light"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
 
         <Grid Grid.Column="1" 
               RowDefinitions=".75* 3* *" ShowGridLines="True">
@@ -31,21 +41,23 @@
                      VerticalContentAlignment="Center" 
                      PlaceholderText="Заголовок:"
                      FontSize="24"
-                     FontWeight="SemiBold"/>
+                     FontWeight="SemiBold"
+                     Text="{Binding Title}"/>
             <TextBox Margin="10"
                      Grid.Row="1"
                      PlaceholderText="Контент:"
                      FontSize="20"
                      AcceptsReturn="True"
-                     AcceptsTab="True"/>
+                     AcceptsTab="True"
+                     Text="{Binding Content}"/>
 
             <StackPanel Margin="10" 
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Grid.Row="2">
                 
-                <Button Content="Добавить" Margin="0 0 10 0" />
-                <Button Content="Удалить" />
+                <Button Command="{Binding AddNoteCommand}" Content="Добавить" Margin="0 0 10 0" />
+                <Button Command="{Binding DeleteNoteCommand}" Content="Удалить" />
 
             </StackPanel>
 
