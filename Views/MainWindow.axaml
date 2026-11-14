@@ -8,7 +8,8 @@
         x:DataType="vm:MainViewModel"
         xmlns:suki="https://github.com/kikipoulet/SukiUI"
         Icon="/Assets/avalonia-logo.ico"
-        Title="NotesApp">
+        Title="NotesApp"
+        BackgroundStyle="GradientSoft">
     <!--
     <Design.DataContext>
         <vm:MainViewModel />
@@ -24,12 +25,14 @@
                                 SelectionMode="Toggle">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}" 
-                                                FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat='Изменено: {0}'}" 
-                                                FontWeight="Light"/>
-                                </StackPanel>
+                                <suki:GlassCard>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" 
+                                                    FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding CreatedAt, StringFormat='Изменено: {0}'}" 
+                                                    FontWeight="Light"/>
+                                    </StackPanel>
+                                </suki:GlassCard>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -45,11 +48,14 @@
                      FontWeight="SemiBold"
                      Text="{Binding Title}"/>
             <TextBox Margin="10"
+                     TextAlignment="Left"
                      Grid.Row="1"
                      PlaceholderText="Контент:"
                      FontSize="20"
                      AcceptsReturn="True"
                      AcceptsTab="True"
+                     TextWrapping="Wrap"
+                     VerticalContentAlignment="Top"
                      Text="{Binding Content}"/>
 
             <StackPanel Margin="10" 
@@ -57,8 +63,8 @@
                         HorizontalAlignment="Center"
                         Grid.Row="2">
                 
-                <Button Command="{Binding AddNoteCommand}" Content="Добавить" Margin="0 0 10 0" />
-                <Button Command="{Binding DeleteNoteCommand}" Content="Удалить" />
+                <Button Height="50" Classes="Flat" Command="{Binding AddNoteCommand}" Content="Добавить" Margin="0 0 10 0" />
+                <Button Height="50" Classes="Danger" Command="{Binding DeleteNoteCommand}" Content="Удалить" />
 
             </StackPanel>
 

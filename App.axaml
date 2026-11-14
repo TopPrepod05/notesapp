@@ -11,6 +11,6 @@
     </Application.DataTemplates>
 
     <Application.Styles>
-        <suki:SukiTheme ThemeColor="Orange" />
+        <suki:SukiTheme ThemeColor="Blue" />
     </Application.Styles>
 </Application>
