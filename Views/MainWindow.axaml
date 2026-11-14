@@ -1,4 +1,4 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+﻿<suki:Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:NotesApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,6 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="NotesApp.Views.MainWindow"
         x:DataType="vm:MainViewModel"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
         Icon="/Assets/avalonia-logo.ico"
         Title="NotesApp">
     <!--
@@ -14,7 +15,7 @@
     </Design.DataContext>
     -->
 
-    <Grid ColumnDefinitions="* 2*" ShowGridLines="True">
+    <Grid ColumnDefinitions="* 2*" ShowGridLines="False">
 
             <ScrollViewer Grid.Column="0">
                 <StackPanel>
@@ -36,7 +37,7 @@
             </ScrollViewer>
 
         <Grid Grid.Column="1" 
-              RowDefinitions=".75* 3* *" ShowGridLines="True">
+              RowDefinitions=".75* 3* *" ShowGridLines="False">
             <TextBox Margin="10" 
                      VerticalContentAlignment="Center" 
                      PlaceholderText="Заголовок:"
@@ -66,4 +67,4 @@
     </Grid>
     
 
-</Window>
+</suki:Window>
