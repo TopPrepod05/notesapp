@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using NotesApp.Models;
 using NotesApp.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,7 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty] private string _title = "";
     [ObservableProperty] private string _content = "";
     [ObservableProperty] private Note? _selectedNote;
+    [ObservableProperty] private string _search = "";
     private INoteService noteService;
     public ObservableCollection<Note> Notes { get; set; } = [];
 
@@ -29,8 +31,27 @@ public partial class MainViewModel : ViewModelBase
         Notes.Clear();
         var nts = await noteService.GetAllAsync();
         var sorted = nts.OrderByDescending(el => el.CreatedAt);
-        foreach (var n in sorted) Notes.Add(n);
+        if (!string.IsNullOrWhiteSpace(Search))
+        {
+            foreach (var n in sorted)
+            {
+                if (n.Title.Contains(Search, StringComparison.OrdinalIgnoreCase))
+                {
+                    Notes.Add(n);
+                }
+            }
+        }
+        else
+        {
+            foreach (var n in sorted) Notes.Add(n);
+        }
     }
+
+    partial void OnSearchChanged(string value)
+    {
+        _ = Load();
+    }
+
 
     [RelayCommand] private async Task AddNote()
     {
