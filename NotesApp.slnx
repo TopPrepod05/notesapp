@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../NotesApp.Tests/NotesApp.Tests.csproj" Id="6cff7680-f357-4ba7-9511-edd7eb0f2251" />
   <Project Path="NotesApp.csproj" />
 </Solution>
