@@ -1,7 +1,5 @@
-bin/
-obj/
-.vs/
-.vscode/
-.idea/
-NotesApp.Tests/bin/
-NotesApp.Tests/obj/
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/.idea/
